@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>AccentBridge &mdash; Audio Samples</title>
+<style>
+:root{
+  --bg:#fbfbf9; --card:#fff; --ink:#1a1a1a; --muted:#6b6b66; --line:#e4e4de;
+  --accent:#8a2f2f; --chip:#f1f0eb; --tile:#faf9f6;
+  --ours:#fdf6f1; --oursline:#c97a52; --oursink:#8a3f1f;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#141410;--card:#1c1c18;--ink:#eceae4;--muted:#9c9a93;--line:#33332c;
+        --accent:#e0a08a;--chip:#26251f;--tile:#212019;
+        --ours:#2a201a;--oursline:#c97a52;--oursink:#f0b696;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto;padding:56px 20px 80px}
+header{border-bottom:1px solid var(--line);padding-bottom:26px;margin-bottom:34px}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:34px;line-height:1.25;margin:0;letter-spacing:-.01em}
+h1 .sub{display:block;font-size:19px;color:var(--muted);font-weight:400;margin-top:10px;line-height:1.4}
+.meta{color:var(--muted);font-size:14px;margin:14px 0 0}
+.abstract{margin:20px 0 0;max-width:76ch}
+h2{font-family:Georgia,"Times New Roman",serif;font-size:23px;margin:48px 0 6px}
+h2 .n{color:var(--accent);margin-right:10px}
+.lede{color:var(--muted);margin:0 0 22px;max-width:76ch;font-size:15px}
+.note{background:var(--chip);border-left:3px solid var(--accent);padding:13px 17px;margin:26px 0 0;
+  font-size:14.5px;border-radius:0 4px 4px 0;max-width:80ch}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;
+  padding:16px 18px 18px;margin-bottom:14px}
+.head{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px;margin-bottom:3px}
+.pairs{font-size:15px;font-weight:600;white-space:nowrap}
+.pairs .arrow{color:var(--accent);margin:0 6px;font-weight:400}
+.who{font-size:13px;color:var(--muted)}
+.said{font-size:14px;color:var(--muted);font-style:italic;margin:0 0 13px;max-width:80ch}
+
+.tiles{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(178px,1fr))}
+.tile{background:var(--tile);border:1px solid var(--line);border-radius:6px;padding:9px 10px 7px}
+.tile .lab{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);
+  font-weight:600;margin-bottom:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tile.in{background:transparent;border-style:dashed}
+.tile.ours{background:var(--ours);border-color:var(--oursline);box-shadow:0 0 0 1px var(--oursline)}
+.tile.ours .lab{color:var(--oursink)}
+audio{width:100%;height:32px;display:block}
+
+footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);
+  color:var(--muted);font-size:13.5px;max-width:80ch}
+code{background:var(--chip);padding:1px 5px;border-radius:3px;font-size:13px}
+@media (max-width:640px){.wrap{padding:34px 15px 56px}h1{font-size:26px}h1 .sub{font-size:17px}
+  h2{font-size:20px}.tiles{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>AccentBridge
+    <span class="sub">Prototype-Anchored Exemplar Conditioning for Accent Control in Zero-Shot TTS</span>
+  </h1>
+  <p class="meta">Anonymous submission &middot; Audio samples</p>
+  <p class="abstract">
+    AccentBridge takes the voice and the accent as two <em>separate</em> examples: a reference prompt
+    fixes who is speaking, while short exemplar clips of any speaker fix the accent. A single
+    guidance weight <em>w</em>, chosen after training, sets how strongly the accent is applied. The
+    system is one model and one forward pass, with no accent label and no conversion stage after
+    synthesis.
+  </p>
+</header>
+
+<h2><span class="n">1</span>Accent transfer</h2>
+<p class="lede">
+  Each row keeps the speaker from the voice prompt and takes the accent from the accent reference,
+  a recording by a different person. All three systems receive identical inputs and generate the
+  same unseen sentence. Headphones recommended.
+</p>
+<div id="compare"></div>
+
+<p class="note">
+  <strong>What to listen for.</strong> F5-TTS has no accent control, so it renders the prompt
+  speaker's own accent. The cascade converts the waveform with a separate voice-conversion model,
+  which moves the timbre away from the prompt. AccentBridge changes the accent while the voice stays
+  the prompt's.
+</p>
+
+<h2><span class="n">2</span>Continuous accent strength</h2>
+<p class="lede">
+  The same model and the same exemplar clips at increasing guidance weight. Nothing is retrained
+  between columns; <em>w</em> is a single scalar applied at synthesis time.
+</p>
+<div id="ladder"></div>
+
+<footer>
+  <p>
+    Audio is 24&nbsp;kHz mono WAV. Accent references are drawn from Common Voice; voice prompts come
+    from a licensed voice bank. Samples are generated at <code>w</code> as labelled.
+  </p>
+</footer>
+
+</div>
+<script src="samples.js"></script>
+<script>
+const S = window.SAMPLES;
+
+function tile(label, src, cls) {
+  const d = document.createElement("div");
+  d.className = "tile" + (cls ? " " + cls : "");
+  const l = document.createElement("div");
+  l.className = "lab";
+  l.textContent = label;
+  const a = document.createElement("audio");
+  a.controls = true; a.preload = "none"; a.src = src;
+  d.append(l, a);
+  return d;
+}
+
+function card(r, tiles) {
+  const c = document.createElement("div");
+  c.className = "card";
+  const h = document.createElement("div");
+  h.className = "head";
+  h.innerHTML = `<span class="pairs">${r.source}<span class="arrow">&rarr;</span>${r.target}</span>`
+    + `<span class="who">${r.gender} voice</span>`;
+  const s = document.createElement("p");
+  s.className = "said";
+  s.textContent = "“" + r.text + "”";
+  const g = document.createElement("div");
+  g.className = "tiles";
+  tiles.forEach(t => g.appendChild(tile(t.label, `audio/${r.id}_${t.file}.wav`, t.cls)));
+  c.append(h, s, g);
+  return c;
+}
+
+const INPUTS = [{ label: "Voice prompt", file: "prompt", cls: "in" },
+                { label: "Accent reference", file: "accent_ref", cls: "in" }];
+
+const compare = INPUTS.concat([
+  { label: "F5-TTS", file: "f5tts" },
+  { label: "Cascade (TTS → VC)", file: "cascade" },
+  { label: "AccentBridge", file: "accentbridge", cls: "ours" },
+]);
+S.compare.forEach(r => document.getElementById("compare").appendChild(card(r, compare)));
+
+const last = S.ladder_weights.length - 1;
+const ladder = [INPUTS[0]].concat(S.ladder_weights.map((w, i) =>
+  ({ label: i === 0 ? "w = 0 (accent off)" : "w = " + w, file: "w" + w, cls: i === last ? "ours" : null })));
+S.ladder.forEach(r => document.getElementById("ladder").appendChild(card(r, ladder)));
+
+document.querySelectorAll("audio").forEach(a =>
+  a.addEventListener("play", () => document.querySelectorAll("audio").forEach(o => { if (o !== a) o.pause(); })));
+</script>
+</body>
+</html>

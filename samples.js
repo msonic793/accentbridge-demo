@@ -1,0 +1,118 @@
+window.SAMPLES = {
+ "compare": [
+  {
+   "id": "c01",
+   "text": "With the country pacified, the greatest impediment to the project was providing sufficient finances.",
+   "target": "US",
+   "source": "German",
+   "gender": "female"
+  },
+  {
+   "id": "c02",
+   "text": "The stem is thick and short.",
+   "target": "India",
+   "source": "German",
+   "gender": "male"
+  },
+  {
+   "id": "c03",
+   "text": "They fly in tight flocks and often rapidly change directions with great synchrony.",
+   "target": "Canada",
+   "source": "Ireland",
+   "gender": "female"
+  },
+  {
+   "id": "c04",
+   "text": "You tell me, and I will do it.",
+   "target": "Southern Africa",
+   "source": "England",
+   "gender": "female"
+  },
+  {
+   "id": "c05",
+   "text": "Service bays and service managers were added to each store.",
+   "target": "England",
+   "source": "Italian",
+   "gender": "male"
+  },
+  {
+   "id": "c06",
+   "text": "For example, they preserve the lateral fricatives of Proto-Semitic.",
+   "target": "England",
+   "source": "US",
+   "gender": "male"
+  },
+  {
+   "id": "c07",
+   "text": "He was soon defeated and Adalbert named in his place in Upper Lorraine.",
+   "target": "India",
+   "source": "Australia",
+   "gender": "male"
+  },
+  {
+   "id": "c08",
+   "text": "The party then fell into a crisis of leadership.",
+   "target": "Canada",
+   "source": "Australia",
+   "gender": "male"
+  },
+  {
+   "id": "c09",
+   "text": "Advisories are spaces where students work on independent projects or other assignments for seminars.",
+   "target": "Hong Kong",
+   "source": "Nigerian",
+   "gender": "male"
+  },
+  {
+   "id": "c10",
+   "text": "They placed it in a wooden box, and left it there for good.",
+   "target": "Southern Africa",
+   "source": "Ireland",
+   "gender": "female"
+  }
+ ],
+ "ladder": [
+  {
+   "id": "l01",
+   "text": "The party then fell into a crisis of leadership.",
+   "target": "India",
+   "source": "US",
+   "gender": "female"
+  },
+  {
+   "id": "l02",
+   "text": "We'll lower it out of the window with pulleys.",
+   "target": "US",
+   "source": "Nigerian",
+   "gender": "female"
+  },
+  {
+   "id": "l03",
+   "text": "They fly in tight flocks and often rapidly change directions with great synchrony.",
+   "target": "India",
+   "source": "Australia",
+   "gender": "female"
+  },
+  {
+   "id": "l04",
+   "text": "Service bays and service managers were added to each store.",
+   "target": "England",
+   "source": "Italian",
+   "gender": "male"
+  },
+  {
+   "id": "l05",
+   "text": "With the country pacified, the greatest impediment to the project was providing sufficient finances.",
+   "target": "US",
+   "source": "German",
+   "gender": "female"
+  }
+ ],
+ "weight": 15.0,
+ "ladder_weights": [
+  0.0,
+  9.0,
+  15.0,
+  19.0
+ ]
+};
